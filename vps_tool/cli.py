@@ -1,5 +1,6 @@
 import typer
 import questionary
+from dotenv import set_key
 from vps_tool.core.backup import backup_vps
 from vps_tool.core.restore import restore_vps
 from vps_tool.core.inspect import inspect_image
@@ -9,9 +10,9 @@ app = typer.Typer(help="VPS Imaging Tool")
 
 
 @app.command()
-def backup():
+def backup(path: str = typer.Argument(None, help="Optional path to save the .gz image")):
     """Backup VPS disk"""
-    backup_vps()
+    backup_vps(path)
 
 
 @app.command()
@@ -42,6 +43,18 @@ def init():
         print(f"✅ Configuration saved to .env with IP: {ip}")
     else:
         print("❌ Initialization cancelled.")
+
+
+@app.command()
+def edit_ip():
+    """Edit the configured VPS IP address"""
+    from vps_tool.config import VPS_IP
+    new_ip = questionary.text("Enter new VPS IP address:", default=VPS_IP or "").ask()
+    if new_ip:
+        set_key(".env", "VPS_IP", new_ip)
+        print(f"✅ IP address updated to: {new_ip}")
+    else:
+        print("❌ Update cancelled.")
 
 
 @app.command()
