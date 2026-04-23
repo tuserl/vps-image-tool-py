@@ -1,4 +1,5 @@
 import typer
+import questionary
 from vps_tool.core.backup import backup_vps
 from vps_tool.core.restore import restore_vps
 from vps_tool.core.inspect import inspect_image
@@ -29,6 +30,18 @@ def inspect(path: str):
 def unzip(path: str):
     """Unzip .gz image"""
     unzip_file(path)
+
+
+@app.command()
+def init():
+    """Initialize configuration (.env file)"""
+    ip = questionary.text("Enter your VPS IP address:").ask()
+    if ip:
+        with open(".env", "w") as f:
+            f.write(f"VPS_IP={ip}\n")
+        print(f"✅ Configuration saved to .env with IP: {ip}")
+    else:
+        print("❌ Initialization cancelled.")
 
 
 @app.command()

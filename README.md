@@ -18,11 +18,14 @@ pip install -e .
 
 ## ⚙️ Configuration
 
-Before using the tool, you must configure your VPS IP address. Create a `.env` file in the root of the project and set your server's IP inside it:
+Before using the tool, you must configure your VPS IP address. You can easily do this by running the initialization command:
 
-```env
-VPS_IP=139.177.195.158
+```bash
+vps-tool init
 ```
+
+This will prompt you for your VPS IP and save it securely in a `.env` file!
+
 *(Note: The `.env` file is ignored by Git, so your IP address won't be pushed to the repository.)*
 
 ---
@@ -52,6 +55,7 @@ The repository includes several directories meant to help organize your workflow
 
 Here are the available commands for the CLI:
 
+- `vps-tool init` — Initialize configuration (sets up your `.env` file)
 - `vps-tool backup` — Backup your VPS disk
 - `vps-tool restore` — Restore your VPS disk (**DANGER**)
 - `vps-tool inspect <image>` — Inspect a downloaded disk image
