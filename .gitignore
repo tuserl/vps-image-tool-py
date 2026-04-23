@@ -13,3 +13,4 @@ logs/*
 *.img.gz
 .DS_Store
 howtopush.md
+.env

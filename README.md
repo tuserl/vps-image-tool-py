@@ -18,11 +18,12 @@ pip install -e .
 
 ## ⚙️ Configuration
 
-Before using the tool, you must configure your VPS IP address. Open `vps_tool/config.py` and set your server's IP:
+Before using the tool, you must configure your VPS IP address. Create a `.env` file in the root of the project and set your server's IP inside it:
 
-```python
-VPS_IP = "139.177.195.158"  # Replace with your actual VPS IP
+```env
+VPS_IP=139.177.195.158
 ```
+*(Note: The `.env` file is ignored by Git, so your IP address won't be pushed to the repository.)*
 
 ---
 
