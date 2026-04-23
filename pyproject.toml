@@ -1,0 +1,14 @@
+[project]
+name = "vps-tool"
+version = "1.0.0"
+dependencies = [
+    "typer",
+    "rich",
+    "questionary"
+]
+
+[project.scripts]
+vps-tool = "vps_tool.cli:app"
+
+[tool.setuptools.packages.find]
+include = ["vps_tool*"]

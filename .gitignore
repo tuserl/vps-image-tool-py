@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+backups/
+mounts/
+tmp/
+logs/
+*.img
+*.img.gz
+.DS_Store
