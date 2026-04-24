@@ -3,6 +3,7 @@ import questionary
 from dotenv import set_key
 from vps_tool.core.backup import backup_vps
 from vps_tool.core.restore import restore_vps
+from vps_tool.core.local import local_backup, local_restore
 from vps_tool.core.inspect import inspect_image
 from vps_tool.utils.files import unzip_file, zip_file
 
@@ -19,6 +20,18 @@ def backup(path: str = typer.Argument(None, help="Optional path to save the .gz 
 def restore():
     """Restore VPS disk (DANGER)"""
     restore_vps()
+
+
+@app.command("local-backup")
+def cli_local_backup(path: str = typer.Argument(None, help="Optional path to save the .gz image")):
+    """Backup a LOCAL disk"""
+    local_backup(path)
+
+
+@app.command("local-restore")
+def cli_local_restore():
+    """Restore an image to a LOCAL disk (DANGER)"""
+    local_restore()
 
 
 @app.command()

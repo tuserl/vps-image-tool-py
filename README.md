@@ -70,11 +70,17 @@ Here is a detailed list of all available commands for the CLI:
 - **`vps-tool edit-ip`**
   Allows you to quickly update or change the currently configured VPS IP address in your `.env` file without opening it manually.
 
-### Backup & Restore
+### Backup & Restore (VPS)
 - **`vps-tool backup [PATH]`**
   Connects to your VPS and downloads a raw image of your disk (`/dev/sda`). It compresses the data over SSH and saves it locally as a `.gz` file. If `[PATH]` is omitted, it will prompt you interactively for where to save the backup.
 - **`vps-tool restore`** 
   *(⚠️ DANGER)* Uploads a local `.gz` backup file back to your VPS and overwrites a target disk block device (defaulting to `/dev/sda`). **You must put your VPS in RESCUE MODE before running this.** It provides a native progress bar during the upload.
+
+### Local Device Management
+- **`vps-tool local-backup [PATH]`**
+  Creates a `.gz` backup image from a local device (like `/dev/sda` or a USB drive) using `sudo dd` and `gzip`.
+- **`vps-tool local-restore`**
+  *(⚠️ DANGER)* Writes a `.gz` backup image directly to a local device, completely overwriting it. Uses `sudo` and provides a beautiful native Python progress bar.
 
 ### Image Management
 - **`vps-tool inspect <image>`**
