@@ -2,10 +2,21 @@ import subprocess
 import questionary
 from rich.console import Console
 from vps_tool.config import DEFAULT_MOUNT
+from vps_tool.utils.files import unzip_file
 
 console = Console()
 
 def inspect_image(path: str):
+    if path.endswith(".gz"):
+        unzip = questionary.confirm("This is a compressed (.gz) file. Do you want to unzip it first?").ask()
+        if unzip:
+            console.print(f"[cyan]Unzipping {path}...[/cyan]")
+            unzip_file(path)
+            path = path[:-3]  # Remove .gz extension
+        else:
+            console.print("[red]Cannot inspect a compressed file without unzipping. Exiting.[/red]")
+            return
+
     subprocess.run(f"sudo losetup -fP {path}", shell=True)
 
     loop = subprocess.getoutput(f"losetup -j {path} | cut -d: -f1").strip()
