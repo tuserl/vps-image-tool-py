@@ -62,14 +62,31 @@ The repository includes several directories meant to help organize your workflow
 
 ## 💻 Commands
 
-Here are the available commands for the CLI:
+Here is a detailed list of all available commands for the CLI:
 
-- `vps-tool init` — Initialize configuration (sets up your `.env` file)
-- `vps-tool edit-ip` — Edit the currently configured VPS IP address
-- `vps-tool backup [PATH]` — Backup your VPS disk (prompts for path if omitted)
-- `vps-tool restore` — Restore your VPS disk (**DANGER**)
-- `vps-tool inspect <image>` — Inspect a downloaded disk image
-- `vps-tool unzip <file>` — Unzip a `.gz` image file
+### Core Configuration
+- **`vps-tool init`** 
+  Interactively prompts you to enter your VPS IP address and securely saves it to a local `.env` file (which is ignored by Git).
+- **`vps-tool edit-ip`**
+  Allows you to quickly update or change the currently configured VPS IP address in your `.env` file without opening it manually.
+
+### Backup & Restore
+- **`vps-tool backup [PATH]`**
+  Connects to your VPS and downloads a raw image of your disk (`/dev/sda`). It compresses the data over SSH and saves it locally as a `.gz` file. If `[PATH]` is omitted, it will prompt you interactively for where to save the backup.
+- **`vps-tool restore`** 
+  *(⚠️ DANGER)* Uploads a local `.gz` backup file back to your VPS and overwrites a target disk block device (defaulting to `/dev/sda`). **You must put your VPS in RESCUE MODE before running this.** It provides a native progress bar during the upload.
+
+### Image Management
+- **`vps-tool inspect <image>`**
+  Mounts a downloaded `.img` file locally to `/tmp/vps_mount` using `losetup` so you can browse its contents. If you pass a `.gz` file, it will automatically ask if you want to unzip it first.
+- **`vps-tool unzip <file>`**
+  Takes a compressed `.gz` backup image and extracts it to a raw `.img` file using Python's native gzip. Displays a beautiful real-time progress bar. The original `.gz` is deleted after extraction to save space.
+- **`vps-tool zip <file>`**
+  Takes an uncompressed raw `.img` file and compresses it back into a `.gz` file. Displays a real-time progress bar and deletes the uncompressed `.img` file after finishing.
+
+### Utility
+- **`vps-tool version`**
+  Displays the current version of the VPS Imaging Tool.
 
 ---
 

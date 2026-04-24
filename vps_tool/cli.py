@@ -4,7 +4,7 @@ from dotenv import set_key
 from vps_tool.core.backup import backup_vps
 from vps_tool.core.restore import restore_vps
 from vps_tool.core.inspect import inspect_image
-from vps_tool.utils.files import unzip_file
+from vps_tool.utils.files import unzip_file, zip_file
 
 app = typer.Typer(help="VPS Imaging Tool")
 
@@ -31,6 +31,12 @@ def inspect(path: str):
 def unzip(path: str):
     """Unzip .gz image"""
     unzip_file(path)
+
+
+@app.command()
+def zip(path: str):
+    """Zip an .img file into .gz"""
+    zip_file(path)
 
 
 @app.command()
