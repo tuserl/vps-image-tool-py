@@ -1,2 +1,0 @@
-[console_scripts]
-vps-tool = vps_tool.cli:app

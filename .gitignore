@@ -14,3 +14,10 @@ logs/*
 .DS_Store
 howtopush.md
 .env
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
