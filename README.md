@@ -88,6 +88,14 @@ Here is a detailed list of all available commands for the CLI:
 - **`vps-tool version`**
   Displays the current version of the VPS Imaging Tool.
 
+### Global Options
+- **`--help`**
+  Displays a helpful menu showing all available commands and options. You can also use this after any command (e.g., `vps-tool backup --help`) for command-specific instructions.
+- **`--install-completion`**
+  Automatically installs shell auto-completion for your current terminal (bash, zsh, fish, etc.). This allows you to press `TAB` to auto-complete `vps-tool` commands!
+- **`--show-completion`**
+  Prints the raw shell script for auto-completion so you can manually copy it or add it to your shell configuration file.
+
 ---
 
 ## ⚠️ WARNING
